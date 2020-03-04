@@ -27,6 +27,17 @@ func (l Length) NotEqual(r Length) bool {
 	return !(l.Equal(r))
 }
 
+func (l Length) Plus(r Length) Length {
+	return Length{l.amountInBaseUnit() + r.amountInBaseUnit(), inch}
+}
+
+func (l Length) Minus(r Length) (Length, bool) {
+	if (l.amountInBaseUnit() < r.amountInBaseUnit()) {
+		return Length{}, false
+	}
+	return Length{l.amountInBaseUnit() - r.amountInBaseUnit(), inch}, true
+}
+
 func Inch(amount Amount) Length {
 	return Length{amount, inch}
 }
