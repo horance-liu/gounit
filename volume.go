@@ -16,6 +16,10 @@ func (u volumeUnit) base() unit {
 	return tsp
 }
 
+func (u volumeUnit) baseStr() string {
+	return "TSP"
+}
+
 type Volume struct {
 	quantity
 }

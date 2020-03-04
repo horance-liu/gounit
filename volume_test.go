@@ -33,3 +33,7 @@ func TestVolumeInvalidMinus(t *testing.T) {
 	_, ok := Tsp(1).Minus(Tsp(2))
 	assert.False(t, ok)
 }
+
+func TestFormatVolumeWithBaseUnit(t *testing.T) {	
+	assert.Equal(t, "12 TSP", Oz(2).String())
+}

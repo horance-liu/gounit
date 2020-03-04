@@ -1,8 +1,14 @@
 package gounit
 
+import "fmt"
+
 type quantity struct {
 	amount Amount
 	unit unit
+}
+
+func (q quantity) String() string {
+	return fmt.Sprintf("%d %s", q.amountInBaseUnit(), q.unit.baseStr())
 }
 
 func (v quantity) amountInBaseUnit() Amount {

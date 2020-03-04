@@ -17,6 +17,10 @@ func (u lengthUnit) base() unit {
 	return inch
 }
 
+func (u lengthUnit) baseStr() string {
+	return "INCH"
+}
+
 type Length struct {
 	quantity
 }

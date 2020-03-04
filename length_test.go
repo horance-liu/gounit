@@ -39,3 +39,6 @@ func TestLengthInvalidMinus(t *testing.T) {
 	assert.False(t, ok)
 }
 
+func TestFormatLengthWithBaseUnit(t *testing.T) {	
+	assert.Equal(t, "24 INCH", Feet(2).String())
+}
