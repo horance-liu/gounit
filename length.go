@@ -1,11 +1,12 @@
 package quantity
 
-
 type Amount uint
 type LengthUnit uint
 
 const (
-	yard LengthUnit = 1
+	inch LengthUnit = 1
+	feet = 12 * inch
+	yard = 3 * feet
 	mile = 1760 * yard 
 )
 
@@ -24,6 +25,14 @@ func (l Length) Equal(r Length) bool {
 
 func (l Length) NotEqual(r Length) bool {
 	return !(l.Equal(r))
+}
+
+func Inch(amount Amount) Length {
+	return Length{amount, inch}
+}
+
+func Feet(amount Amount) Length {
+	return Length{amount, feet}
 }
 
 func Mile(amount Amount) Length {

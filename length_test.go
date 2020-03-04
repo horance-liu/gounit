@@ -17,3 +17,10 @@ func TestMileAndYard(t *testing.T) {
 	assert.True(t, Yard(3).Equal(Yard(3)))
 	assert.True(t, Yard(3).NotEqual(Yard(4)))
 }
+
+func TestLength(t *testing.T) {	
+	assert.True(t, Yard(1).Equal(Feet(3)))
+	assert.True(t, Feet(1).Equal(Inch(12)))
+
+	assert.True(t, Mile(1).Equal(Inch(1760 * 3 * 12)))
+}
