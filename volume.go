@@ -1,49 +1,52 @@
 package gounit
 
-type VolumeUnit uint
+type volumeUnit uint
 
 const (
-	tsp VolumeUnit = 1
+	tsp volumeUnit = 1
 	tbsp = 3 * tsp
 	oz   = 2 * tbsp
 )
 
-type Volume struct {
-	amount Amount
-	unit VolumeUnit
+func (u volumeUnit)	factor() Amount {
+	return Amount(u)
 }
 
-func (v Volume) amountInBaseUnit() Amount {
-	return v.amount * Amount(v.unit)
+func (u volumeUnit) base() unit {
+	return tsp
+}
+
+type Volume struct {
+	quantity
 }
 
 func (v Volume) Equal(r Volume) bool {
-	return v.amountInBaseUnit() == r.amountInBaseUnit()
+	return v.quantity.equal(r.quantity)
 }
 
 func (v Volume) NotEqual(r Volume) bool {
-	return !(v.Equal(r))
+	return v.quantity.notEqual(r.quantity)
 }
 
 func (v Volume) Plus(r Volume) Volume {
-	return Volume{v.amountInBaseUnit() + r.amountInBaseUnit(), tsp}
+	return Volume{v.quantity.plus(r.quantity)}
 }
 
 func (v Volume) Minus(r Volume) (Volume, bool) {
-	if (v.amountInBaseUnit() < r.amountInBaseUnit()) {
-		return Volume{}, false
+	if q, ok := v.quantity.minus(r.quantity); ok {
+		return Volume{q}, true
 	}
-	return Volume{v.amountInBaseUnit() - r.amountInBaseUnit(), tsp}, true
+	return Volume{}, false
 }
 
 func Tsp(amount Amount) Volume {
-	return Volume{amount, tsp}
+	return Volume{quantity{amount, tsp}}
 }
 
 func Tbsp(amount Amount) Volume {
-	return Volume{amount, tbsp}
+	return Volume{quantity{amount, tbsp}}
 }
 
 func Oz(amount Amount) Volume {
-	return Volume{amount, oz}
+	return Volume{quantity{amount, oz}}
 }
