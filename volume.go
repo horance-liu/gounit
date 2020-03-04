@@ -1,4 +1,4 @@
-package quantity
+package gounit
 
 type VolumeUnit uint
 

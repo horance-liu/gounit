@@ -1,4 +1,4 @@
-module github.com/horance-liu/quantity
+module github.com/horance-liu/gounit
 
 go 1.13
 

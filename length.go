@@ -1,6 +1,5 @@
-package quantity
+package gounit
 
-type Amount uint
 type LengthUnit uint
 
 const (
