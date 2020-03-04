@@ -25,16 +25,16 @@ func TestLength(t *testing.T) {
 	assert.True(t, Mile(1).Equal(Inch(1760 * 3 * 12)))
 }
 
-func TestPlus(t *testing.T) {	
+func TestLengthPlus(t *testing.T) {	
 	assert.True(t, Inch(13).Plus(Inch(11)).Equal(Feet(2)))
 }
 
-func TestMinus(t *testing.T) {	
+func TestLengthMinus(t *testing.T) {	
 	length, ok := Yard(2).Minus(Feet(3))
 	assert.True(t, ok && length.Equal(Yard(1)))
 }
 
-func TestInvalidMinus(t *testing.T) {	
+func TestLengthInvalidMinus(t *testing.T) {	
 	_, ok := Yard(1).Minus(Yard(2))
 	assert.False(t, ok)
 }
